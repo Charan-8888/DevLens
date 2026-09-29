@@ -31,7 +31,12 @@ object StressScenarios {
      * Starts the specified stress scenario in a background coroutine.
      * Automatically stops after [durationMs] milliseconds.
      */
-    fun start(scenario: Scenario, scope: CoroutineScope, durationMs: Long = 8000L) {
+    fun start(
+        scenario: Scenario,
+        scope: CoroutineScope,
+        durationMs: Long = 8000L,
+        onCompleted: (() -> Unit)? = null
+    ) {
         stop()
         if (scenario == Scenario.NONE) return
 
@@ -41,7 +46,7 @@ object StressScenarios {
 
         activeJob = scope.launch(Dispatchers.Default) {
             val deadline = System.currentTimeMillis() + durationMs
-            
+
             val workers = List(numWorkers) {
                 launch {
                     while (isActive && System.currentTimeMillis() < deadline) {
@@ -59,6 +64,8 @@ object StressScenarios {
                 }
             }
             workers.forEach { it.join() }
+            // Notify caller so UI state can be reset
+            onCompleted?.invoke()
         }
     }
 

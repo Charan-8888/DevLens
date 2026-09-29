@@ -145,7 +145,15 @@ class DevLensViewModel(application: Application) : AndroidViewModel(application)
         if (scenario == StressScenarios.Scenario.NONE) {
             StressScenarios.stop()
         } else {
-            StressScenarios.start(scenario, viewModelScope, durationMs = 60_000L)
+            StressScenarios.start(
+                scenario = scenario,
+                scope = viewModelScope,
+                durationMs = 60_000L,
+                onCompleted = {
+                    // Auto-reset button back to TRIGGER when stress job finishes
+                    _uiState.update { it.copy(activeScenario = StressScenarios.Scenario.NONE) }
+                }
+            )
         }
     }
 
