@@ -73,8 +73,19 @@ fun DevLensNavigation(
             )
         }
 
-        DevLensViewModel.AppState.MONITORING,
+        DevLensViewModel.AppState.MONITORING -> {
+            MonitorScreen(
+                uiState = uiState,
+                onTriggerScenario = onTriggerScenario,
+                onStopMonitoring = onStopMonitoring,
+                onInvestigateIncident = onInvestigateIncident
+            )
+        }
+
         DevLensViewModel.AppState.INCIDENT_DETECTED -> {
+            // Auto-navigate straight to investigation — no manual tap required
+            LaunchedEffect(Unit) { onInvestigateIncident() }
+            // Show MonitorScreen underneath while LaunchedEffect fires
             MonitorScreen(
                 uiState = uiState,
                 onTriggerScenario = onTriggerScenario,

@@ -7,13 +7,17 @@ import com.devlens.data.entities.TelemetrySample
  *
  * IMPORTANT: This class uses only arithmetic thresholds.
  * The LLM is never called here. It only receives structured output from this class.
+ *
+ * CPU detection uses RELATIVE thresholds (multiplier over baseline) because
+ * DevLens measures its own process CPU — on a multi-core device a stressed
+ * process rarely hits 80% absolute even when it is genuinely hammering the CPU.
  */
 class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) {
 
     data class DetectedIncident(
         val type: IncidentType,
         val severity: IncidentSeverity,
-        val startIndex: Int,       // index into samples list
+        val startIndex: Int,
         val triggeringSamples: List<TelemetrySample>,
         val description: String
     )
@@ -21,8 +25,6 @@ class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) 
     /**
      * Evaluates the sliding window of samples and returns an incident if detected.
      * Returns null if no incident is present.
-     *
-     * Must be called with at least [config.baselineWindowSamples + config.fpsDropConsecutiveSamples] samples.
      */
     fun evaluate(
         samples: List<TelemetrySample>,
@@ -46,7 +48,11 @@ class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) 
 
         if (lowFpsSamples.size < config.fpsDropConsecutiveSamples) return null
 
+        // Also require it's a genuine drop from baseline (not just low baseline device)
         val worstFps = lowFpsSamples.minOf { it.fps }
+        val fpsDrop = baseline.fps - worstFps
+        if (fpsDrop < 10f) return null  // must drop at least 10fps from baseline
+
         val severity = when {
             worstFps < config.fpsSevereDropThreshold -> IncidentSeverity.CRITICAL
             worstFps < config.fpsDropThreshold -> IncidentSeverity.HIGH
@@ -68,14 +74,23 @@ class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) 
         baseline: BaselineMetrics
     ): DetectedIncident? {
         val recent = samples.takeLast(config.cpuConsecutiveSamples + 2)
-        val highCpuSamples = recent.filter { it.cpuPercent > config.cpuHighPercent }
+
+        // PRIMARY: relative threshold — CPU rose to 2.5× baseline or more
+        val baselineCpu = baseline.cpuPercent.coerceAtLeast(0.5f)  // avoid div/0
+        val relativeThreshold = baselineCpu * config.cpuRelativeMultiplier
+
+        // SECONDARY: absolute floor — must be above 15% to rule out noise
+        val highCpuSamples = recent.filter { sample ->
+            sample.cpuPercent > config.cpuHighPercent &&           // above absolute floor
+            sample.cpuPercent > relativeThreshold                   // AND above relative threshold
+        }
 
         if (highCpuSamples.size < config.cpuConsecutiveSamples) return null
 
         val peakCpu = highCpuSamples.maxOf { it.cpuPercent }
         val severity = when {
             peakCpu > config.cpuCriticalPercent -> IncidentSeverity.CRITICAL
-            peakCpu > config.cpuHighPercent -> IncidentSeverity.HIGH
+            peakCpu > relativeThreshold * 1.5f -> IncidentSeverity.HIGH
             else -> IncidentSeverity.MEDIUM
         }
 
@@ -84,7 +99,8 @@ class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) 
             severity = severity,
             startIndex = samples.size - recent.size,
             triggeringSamples = highCpuSamples,
-            description = "CPU spiked from ${baseline.cpuPercent.toInt()}% to ${peakCpu.toInt()}%"
+            description = "CPU spiked from ${baseline.cpuPercent.toInt()}% to ${peakCpu.toInt()}% " +
+                "(${(peakCpu / baselineCpu).toInt()}× baseline)"
         )
     }
 
@@ -121,9 +137,13 @@ class IncidentDetector(private val config: ThresholdConfig = ThresholdConfig()) 
         baseline: BaselineMetrics
     ): DetectedIncident? {
         val recent = samples.takeLast(config.fpsDropConsecutiveSamples + 2)
+        val baselineCpu = baseline.cpuPercent.coerceAtLeast(0.5f)
 
         val hasFrameDrop = recent.count { it.fps < config.correlationFpsThreshold } >= 2
-        val hasHighCpu = recent.count { it.cpuPercent > config.correlationCpuThreshold } >= 2
+        val hasHighCpu = recent.count {
+            it.cpuPercent > config.cpuHighPercent &&
+            it.cpuPercent > baselineCpu * config.correlationCpuMultiplier
+        } >= 2
 
         if (!hasFrameDrop || !hasHighCpu) return null
 
@@ -148,13 +168,12 @@ data class BaselineMetrics(
     val memoryMb: Float
 ) {
     companion object {
-        /** Calculate baseline from the first N samples of a session */
         fun fromSamples(samples: List<TelemetrySample>): BaselineMetrics {
-            if (samples.isEmpty()) return BaselineMetrics(60f, 16.67f, 0f, 0f)
+            if (samples.isEmpty()) return BaselineMetrics(60f, 16.67f, 1f, 0f)
             return BaselineMetrics(
                 fps = samples.map { it.fps }.average().toFloat(),
                 frameTimeMs = samples.map { it.frameTimeMs }.average().toFloat(),
-                cpuPercent = samples.map { it.cpuPercent }.average().toFloat(),
+                cpuPercent = samples.map { it.cpuPercent }.average().toFloat().coerceAtLeast(0.5f),
                 memoryMb = samples.map { it.memoryMb }.average().toFloat()
             )
         }

@@ -115,12 +115,12 @@ object StressScenarios {
      */
     private fun memoryStressIteration() {
         val arrays = mutableListOf<ByteArray>()
-        // Allocate 50 chunks of 1MB each
-        repeat(50) {
+        // Allocate 5 chunks of 1MB each per worker (prevent OOM when 8 cores run this)
+        repeat(5) {
             arrays.add(ByteArray(1024 * 1024) { it.toByte() })
         }
         // Hold briefly then release (triggers GC)
-        Thread.sleep(50)
+        Thread.sleep(20)
         arrays.clear()
         System.gc()
     }

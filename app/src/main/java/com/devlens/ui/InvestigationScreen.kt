@@ -1,6 +1,8 @@
 package com.devlens.ui
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devlens.DevLensViewModel
@@ -25,6 +28,15 @@ fun InvestigationScreen(
     val investigation = uiState.investigation
     val incident = uiState.incident
     val isInvestigating = uiState.appState == DevLensViewModel.AppState.INVESTIGATING
+    val isDone = uiState.appState == DevLensViewModel.AppState.RECOMMENDATION_READY
+
+    // Auto-navigate to verification when the investigation is complete
+    LaunchedEffect(isDone) {
+        if (isDone && investigation != null) {
+            kotlinx.coroutines.delay(3000) // Let user read the result for 3s
+            onStartVerification()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -43,7 +55,11 @@ fun InvestigationScreen(
         Text("AI INVESTIGATION", style = MaterialTheme.typography.labelSmall,
             color = Violet, letterSpacing = 1.sp)
         Text(
-            if (isInvestigating) "Investigating..." else "Investigation Complete",
+            when {
+                isInvestigating -> "Investigating..."
+                isDone -> "Investigation Complete"
+                else -> "AI Investigation"
+            },
             style = MaterialTheme.typography.headlineMedium,
             color = TextPrimary, fontWeight = FontWeight.Bold
         )
@@ -51,7 +67,7 @@ fun InvestigationScreen(
         ProgressStepper(currentStep = 2)
         Spacer(Modifier.height(12.dp))
 
-        // ─── LLM status ───────────────────────────────────────────────────────
+        // ─── LLM Running spinner ──────────────────────────────────────────────
         if (isInvestigating) {
             DevLensCard {
                 Row(verticalAlignment = Alignment.CenterVertically,
@@ -61,15 +77,15 @@ fun InvestigationScreen(
                         color = Violet, strokeWidth = 2.dp
                     )
                     Column {
-                        Text("Local AI Investigation",
+                        Text("Local AI Investigation Running",
                             style = MaterialTheme.typography.titleMedium,
                             color = TextPrimary, fontWeight = FontWeight.Bold)
-                        Text(uiState.llmState.ifEmpty { "Preparing model..." },
+                        Text(uiState.llmState.ifEmpty { "Loading SmolLM2 Q4 model..." },
                             style = MaterialTheme.typography.bodyMedium, color = TextMuted)
                     }
                 }
                 Spacer(Modifier.height(8.dp))
-                Text("No cloud · No API key · SmolLM2 Q4 running on-device",
+                Text("🔒 No cloud · No API key · SmolLM2 1.7B running fully on-device",
                     style = MaterialTheme.typography.bodyMedium, color = TextDim)
             }
             return
@@ -77,7 +93,7 @@ fun InvestigationScreen(
 
         // ─── Incident summary ─────────────────────────────────────────────────
         if (incident != null) {
-            SectionLabel("INCIDENT SUMMARY")
+            SectionLabel("DETECTED INCIDENT")
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(7.dp)) {
                 MetricCard("FPS",
                     "${incident.baseline.fps.toInt()}→${incident.peakFps.toInt()}",
@@ -93,35 +109,46 @@ fun InvestigationScreen(
             }
         }
 
+        // ─── Hindsight memory banner ──────────────────────────────────────────
+        if (investigation != null && investigation.hadPreviousExperiences) {
+            Spacer(Modifier.height(10.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Violet.copy(alpha = 0.15f))
+                    .border(1.dp, Violet.copy(alpha = 0.4f), RoundedCornerShape(12.dp))
+                    .padding(12.dp)
+            ) {
+                Column {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text("🧠", fontSize = 18.sp)
+                        Text("HINDSIGHT MEMORY ACTIVE",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = VioletLight, fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.sp)
+                    }
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        "${investigation.previousExperienceCount} similar past investigation(s) retrieved and used to improve this analysis",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = TextMuted
+                    )
+                }
+            }
+        }
+
         // ─── AI investigation result ───────────────────────────────────────────
         if (investigation != null) {
             val result = investigation.result
 
-            // Previous experience indicator
-            if (investigation.hadPreviousExperiences) {
-                Spacer(Modifier.height(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(Violet.copy(alpha = 0.1f))
-                        .padding(10.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text("🧠", fontSize = 16.sp)
-                    Text(
-                        "${investigation.previousExperienceCount} similar experience(s) from hindsight memory incorporated",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = VioletLight
-                    )
-                }
-            }
-
-            SectionLabel("SUMMARY")
+            SectionLabel("AI SUMMARY")
             DevLensCard {
                 Text(result.summary, style = MaterialTheme.typography.bodyLarge,
-                    color = TextPrimary, lineHeight = 20.sp)
+                    color = TextPrimary, lineHeight = 22.sp)
             }
 
             SectionLabel("HYPOTHESES")
@@ -167,24 +194,37 @@ fun InvestigationScreen(
                 }
             }
 
-            SectionLabel("RECOMMENDED ACTION")
+            SectionLabel("RECOMMENDED FIX")
             DevLensCard {
                 Text(result.recommendedAction, style = MaterialTheme.typography.bodyLarge,
-                    color = TextPrimary, lineHeight = 20.sp)
-                Spacer(Modifier.height(8.dp))
+                    color = TextPrimary, lineHeight = 22.sp)
+                Spacer(Modifier.height(6.dp))
                 Text("Verify by monitoring: ${result.verificationMetric}",
                     style = MaterialTheme.typography.bodyMedium, color = Violet)
             }
 
-            Spacer(Modifier.height(20.dp))
-            PrimaryButton("Verify Fix →", onStartVerification, color = Green)
+            Spacer(Modifier.height(16.dp))
+
+            // Auto-proceed notice
+            DevLensCard {
+                Row(verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    CircularProgressIndicator(modifier = Modifier.size(16.dp),
+                        color = Green, strokeWidth = 2.dp)
+                    Text("Moving to Verification in 3 seconds...",
+                        style = MaterialTheme.typography.bodyMedium, color = Green)
+                }
+            }
 
             Spacer(Modifier.height(8.dp))
+            PrimaryButton("Verify Fix Now →", onStartVerification, color = Green)
+
+            Spacer(Modifier.height(4.dp))
             Text(
-                "Apply the recommended fix to the running scenario, then tap Verify Fix",
+                "Apply the recommended fix, then tap Verify Fix",
                 style = MaterialTheme.typography.bodyMedium,
                 color = TextDim,
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
         }

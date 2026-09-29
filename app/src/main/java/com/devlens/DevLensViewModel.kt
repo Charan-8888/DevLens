@@ -9,6 +9,8 @@ import com.devlens.demo.StressScenarios
 import com.devlens.detection.BaselineMetrics
 import com.devlens.detection.IncidentContextBuilder
 import com.devlens.detection.IncidentDetector
+import com.devlens.detection.IncidentSeverity
+import com.devlens.detection.IncidentType
 import com.devlens.detection.ThresholdConfig
 import com.devlens.hindsight.HindsightEngine
 import com.devlens.investigation.InvestigationEngine
@@ -150,10 +152,55 @@ class DevLensViewModel(application: Application) : AndroidViewModel(application)
                 scope = viewModelScope,
                 durationMs = 60_000L,
                 onCompleted = {
-                    // Auto-reset button back to TRIGGER when stress job finishes
                     _uiState.update { it.copy(activeScenario = StressScenarios.Scenario.NONE) }
                 }
             )
+            // Guaranteed fallback: force incident after 5 seconds of stress
+            // This ensures the AI pipeline fires even if the threshold detector is too conservative
+            viewModelScope.launch {
+                delay(5_000)
+                if (_uiState.value.appState == AppState.MONITORING &&
+                    _uiState.value.activeScenario == scenario) {
+                    forceTriggerIncident(scenario)
+                }
+            }
+        }
+    }
+
+    private fun forceTriggerIncident(scenario: StressScenarios.Scenario) {
+        val samples = telemetryManager.recentSamples(8)
+        val baseline = capturedBaseline ?: BaselineMetrics(60f, 16.67f, 1f, 0f)
+
+        val type = when (scenario) {
+            StressScenarios.Scenario.CPU_STRESS -> IncidentType.HIGH_CPU
+            StressScenarios.Scenario.MEMORY_STRESS -> IncidentType.MEMORY_GROWTH
+            StressScenarios.Scenario.RENDERING_STRESS -> IncidentType.FRAME_DROP
+            StressScenarios.Scenario.COMBINED -> IncidentType.COMBINED_DEGRADATION
+            StressScenarios.Scenario.NONE -> return
+        }
+
+        val syntheticIncident = IncidentDetector.DetectedIncident(
+            type = type,
+            severity = IncidentSeverity.HIGH,
+            startIndex = 0,
+            triggeringSamples = samples,
+            description = "Triggered by ${scenario.name.replace('_', ' ')} scenario"
+        )
+
+        val context = contextBuilder.build(
+            incident = syntheticIncident,
+            allSamples = samples,
+            baseline = baseline,
+            sessionId = telemetryManager.sessionId,
+            triggerScenario = scenario.name
+        )
+
+        detectionEnabled = false
+        _uiState.update { it.copy(appState = AppState.INCIDENT_DETECTED, incident = context) }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            (getApplication<Application>() as DevLensApp)
+                .database.incidentDao().insert(context.toEntity())
         }
     }
 

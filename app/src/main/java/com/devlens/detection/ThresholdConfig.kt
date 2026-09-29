@@ -3,29 +3,35 @@ package com.devlens.detection
 /**
  * Configurable thresholds for incident detection.
  * All detection is deterministic — no LLM involvement.
+ *
+ * NOTE: DevLens measures its OWN process CPU (via /proc/self/stat).
+ * On an 8-core phone, one stressed core ≈ 12% of total.
+ * We therefore use RELATIVE thresholds (multiplier over baseline)
+ * as the primary signal, with low absolute floors as secondary.
  */
 data class ThresholdConfig(
     // FPS thresholds
-    val fpsDropThreshold: Float = 30f,          // Below 30 FPS = incident
-    val fpsSevereDropThreshold: Float = 20f,    // Below 20 FPS = severe
-    val fpsDropConsecutiveSamples: Int = 3,     // Must sustain for 3 samples (~1.5s)
+    val fpsDropThreshold: Float = 45f,          // Below 45 FPS = incident
+    val fpsSevereDropThreshold: Float = 30f,    // Below 30 FPS = severe
+    val fpsDropConsecutiveSamples: Int = 2,     // Must sustain 2 samples (~1s)
 
     // Frame time thresholds (ms)
     val frameTimeJankMs: Float = 33.3f,         // 1 dropped frame at 60fps
     val frameTimeSevereMs: Float = 50f,         // 3x expected
 
-    // CPU thresholds
-    val cpuHighPercent: Float = 80f,            // High CPU
-    val cpuCriticalPercent: Float = 90f,        // Critical CPU
-    val cpuConsecutiveSamples: Int = 3,
+    // CPU thresholds — RELATIVE to baseline
+    val cpuHighPercent: Float = 15f,            // Absolute floor: >15% process CPU
+    val cpuCriticalPercent: Float = 40f,        // Absolute critical: >40%
+    val cpuRelativeMultiplier: Float = 2.5f,    // 2.5× baseline = anomaly
+    val cpuConsecutiveSamples: Int = 2,
 
     // Memory thresholds
-    val memoryGrowthMb: Float = 50f,            // 50MB growth = concern
-    val memoryGrowthWindowSamples: Int = 10,    // Over 10 samples (~5s)
+    val memoryGrowthMb: Float = 30f,            // 30MB growth = concern
+    val memoryGrowthWindowSamples: Int = 6,     // Over 6 samples (~3s)
 
     // Correlated incident
-    val correlationFpsThreshold: Float = 35f,
-    val correlationCpuThreshold: Float = 75f,
+    val correlationFpsThreshold: Float = 45f,
+    val correlationCpuMultiplier: Float = 2.0f,
 
     // Baseline calculation window
     val baselineWindowSamples: Int = 6          // First 6 samples (~3s) = baseline
