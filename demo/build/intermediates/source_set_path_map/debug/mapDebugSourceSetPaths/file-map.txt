@@ -1,0 +1,44 @@
+com.devlens.demo-activity-compose-1.9.2-0 C:\Users\araba\.gradle\caches\8.10.2\transforms\0276777aaefb5d2e5fa9323cc10fbea6\transformed\activity-compose-1.9.2\res
+com.devlens.demo-core-1.13.1-1 C:\Users\araba\.gradle\caches\8.10.2\transforms\107c0c0790e261dc357bf102d454ad58\transformed\core-1.13.1\res
+com.devlens.demo-customview-poolingcontainer-1.0.0-2 C:\Users\araba\.gradle\caches\8.10.2\transforms\12779f0977797d9edf48eb7ce470295b\transformed\customview-poolingcontainer-1.0.0\res
+com.devlens.demo-ui-unit-release-3 C:\Users\araba\.gradle\caches\8.10.2\transforms\1a3863e878170c8e95f42912990b0129\transformed\ui-unit-release\res
+com.devlens.demo-runtime-release-4 C:\Users\araba\.gradle\caches\8.10.2\transforms\1eff15c0b6fd6e66905a38daf1673494\transformed\runtime-release\res
+com.devlens.demo-activity-1.9.2-5 C:\Users\araba\.gradle\caches\8.10.2\transforms\22729b4b51cac78bf015b8bcdad656c3\transformed\activity-1.9.2\res
+com.devlens.demo-annotation-experimental-1.4.0-6 C:\Users\araba\.gradle\caches\8.10.2\transforms\339e7b0ba9d2bc53144280d38cf28b8b\transformed\annotation-experimental-1.4.0\res
+com.devlens.demo-lifecycle-viewmodel-release-7 C:\Users\araba\.gradle\caches\8.10.2\transforms\36c11b55b8a166465a111290264b906d\transformed\lifecycle-viewmodel-release\res
+com.devlens.demo-material3-release-8 C:\Users\araba\.gradle\caches\8.10.2\transforms\46ee3e156bfc0a7d16278977caca9a6a\transformed\material3-release\res
+com.devlens.demo-material-icons-core-release-9 C:\Users\araba\.gradle\caches\8.10.2\transforms\4d1eeb3006669e28ba837b3a00e5dff1\transformed\material-icons-core-release\res
+com.devlens.demo-lifecycle-runtime-ktx-release-10 C:\Users\araba\.gradle\caches\8.10.2\transforms\4f0cd12bb6277fdaf96fca74815d3e4d\transformed\lifecycle-runtime-ktx-release\res
+com.devlens.demo-profileinstaller-1.3.1-11 C:\Users\araba\.gradle\caches\8.10.2\transforms\4f77e7916838a188197d2216d803360c\transformed\profileinstaller-1.3.1\res
+com.devlens.demo-foundation-release-12 C:\Users\araba\.gradle\caches\8.10.2\transforms\542078074884782deb0b8e30e60a6841\transformed\foundation-release\res
+com.devlens.demo-lifecycle-livedata-core-2.8.3-13 C:\Users\araba\.gradle\caches\8.10.2\transforms\5b316534f6e69dd4059962f93f56b932\transformed\lifecycle-livedata-core-2.8.3\res
+com.devlens.demo-lifecycle-viewmodel-ktx-2.8.3-14 C:\Users\araba\.gradle\caches\8.10.2\transforms\5b3523c9a073e00fd18c2650185ea563\transformed\lifecycle-viewmodel-ktx-2.8.3\res
+com.devlens.demo-ui-release-15 C:\Users\araba\.gradle\caches\8.10.2\transforms\630f24ebe93451c89c0613bc64184300\transformed\ui-release\res
+com.devlens.demo-graphics-path-1.0.1-16 C:\Users\araba\.gradle\caches\8.10.2\transforms\64e49c6025f2d6eea06bfa7da2915fb7\transformed\graphics-path-1.0.1\res
+com.devlens.demo-ui-geometry-release-17 C:\Users\araba\.gradle\caches\8.10.2\transforms\6a6da829d416b1ca83a6e8f7a3bc347b\transformed\ui-geometry-release\res
+com.devlens.demo-savedstate-1.2.1-18 C:\Users\araba\.gradle\caches\8.10.2\transforms\6b57f57a89935e409d3aa616ee8479b8\transformed\savedstate-1.2.1\res
+com.devlens.demo-startup-runtime-1.1.1-19 C:\Users\araba\.gradle\caches\8.10.2\transforms\761cdd2808715bc3b1372f5549d44fd3\transformed\startup-runtime-1.1.1\res
+com.devlens.demo-lifecycle-runtime-compose-release-20 C:\Users\araba\.gradle\caches\8.10.2\transforms\7eef244dfeab54c5e0d0a22d7c81a530\transformed\lifecycle-runtime-compose-release\res
+com.devlens.demo-foundation-layout-release-21 C:\Users\araba\.gradle\caches\8.10.2\transforms\81093a80d25d32214dd8b1a47027cbfd\transformed\foundation-layout-release\res
+com.devlens.demo-animation-core-release-22 C:\Users\araba\.gradle\caches\8.10.2\transforms\841af591015dea68bc4c10847acaaf59\transformed\animation-core-release\res
+com.devlens.demo-material-ripple-release-23 C:\Users\araba\.gradle\caches\8.10.2\transforms\8e012efde7721dc1ba5234a8993fa039\transformed\material-ripple-release\res
+com.devlens.demo-ui-text-release-24 C:\Users\araba\.gradle\caches\8.10.2\transforms\9414e6b676d24189b04dad441f32a462\transformed\ui-text-release\res
+com.devlens.demo-core-runtime-2.2.0-25 C:\Users\araba\.gradle\caches\8.10.2\transforms\9e3440fe9fe4f25005b5c51ffa4d65c7\transformed\core-runtime-2.2.0\res
+com.devlens.demo-lifecycle-viewmodel-savedstate-2.8.3-26 C:\Users\araba\.gradle\caches\8.10.2\transforms\a08850b8fab3ea20f7cb1d4a17366395\transformed\lifecycle-viewmodel-savedstate-2.8.3\res
+com.devlens.demo-core-ktx-1.13.1-27 C:\Users\araba\.gradle\caches\8.10.2\transforms\a5fe1f036cfa262854461434294f7ad3\transformed\core-ktx-1.13.1\res
+com.devlens.demo-lifecycle-process-2.8.3-28 C:\Users\araba\.gradle\caches\8.10.2\transforms\a61f322d6ccc8860e65e636869878f9d\transformed\lifecycle-process-2.8.3\res
+com.devlens.demo-emoji2-1.3.0-29 C:\Users\araba\.gradle\caches\8.10.2\transforms\b6872d7202ecd65d5ebeac80e150a57a\transformed\emoji2-1.3.0\res
+com.devlens.demo-activity-ktx-1.9.2-30 C:\Users\araba\.gradle\caches\8.10.2\transforms\d1b4f32d040b31deb1e9a4c63abe2a78\transformed\activity-ktx-1.9.2\res
+com.devlens.demo-animation-release-31 C:\Users\araba\.gradle\caches\8.10.2\transforms\d3c5eb299e7bba50a56c7106865c4b84\transformed\animation-release\res
+com.devlens.demo-lifecycle-runtime-release-32 C:\Users\araba\.gradle\caches\8.10.2\transforms\d9078fdc1a38b5e9cf946ef4ef9c6b8d\transformed\lifecycle-runtime-release\res
+com.devlens.demo-savedstate-ktx-1.2.1-33 C:\Users\araba\.gradle\caches\8.10.2\transforms\db4d521ea57cdb828cc8eef3f1d1da4e\transformed\savedstate-ktx-1.2.1\res
+com.devlens.demo-runtime-saveable-release-34 C:\Users\araba\.gradle\caches\8.10.2\transforms\db8f91b29eb9632bbac8fad1c59059c5\transformed\runtime-saveable-release\res
+com.devlens.demo-ui-util-release-35 C:\Users\araba\.gradle\caches\8.10.2\transforms\f6b4fd20917ba573b8013217d7095971\transformed\ui-util-release\res
+com.devlens.demo-ui-graphics-release-36 C:\Users\araba\.gradle\caches\8.10.2\transforms\f706a988c83d14d62e67e17097b3193f\transformed\ui-graphics-release\res
+com.devlens.demo-pngs-37 D:\IQOO Hackathon\DevLens_New_Version\demo\build\generated\res\pngs\debug
+com.devlens.demo-resValues-38 D:\IQOO Hackathon\DevLens_New_Version\demo\build\generated\res\resValues\debug
+com.devlens.demo-packageDebugResources-39 D:\IQOO Hackathon\DevLens_New_Version\demo\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.devlens.demo-packageDebugResources-40 D:\IQOO Hackathon\DevLens_New_Version\demo\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.devlens.demo-debug-41 D:\IQOO Hackathon\DevLens_New_Version\demo\build\intermediates\merged_res\debug\mergeDebugResources
+com.devlens.demo-debug-42 D:\IQOO Hackathon\DevLens_New_Version\demo\src\debug\res
+com.devlens.demo-main-43 D:\IQOO Hackathon\DevLens_New_Version\demo\src\main\res

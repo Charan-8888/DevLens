@@ -1,0 +1,59 @@
+com.devlens.app-activity-compose-1.9.2-0 C:\Users\araba\.gradle\caches\8.10.2\transforms\0276777aaefb5d2e5fa9323cc10fbea6\transformed\activity-compose-1.9.2\res
+com.devlens.app-ui-unit-release-1 C:\Users\araba\.gradle\caches\8.10.2\transforms\0294c716129713aa1ef020da562d26ac\transformed\ui-unit-release\res
+com.devlens.app-lifecycle-runtime-compose-release-2 C:\Users\araba\.gradle\caches\8.10.2\transforms\0b33d665261c9a27e2a0b2405bdb85c9\transformed\lifecycle-runtime-compose-release\res
+com.devlens.app-lifecycle-viewmodel-ktx-2.8.6-3 C:\Users\araba\.gradle\caches\8.10.2\transforms\0ec5e4d1a8139876fd5842d2fa62f519\transformed\lifecycle-viewmodel-ktx-2.8.6\res
+com.devlens.app-core-1.13.1-4 C:\Users\araba\.gradle\caches\8.10.2\transforms\107c0c0790e261dc357bf102d454ad58\transformed\core-1.13.1\res
+com.devlens.app-customview-poolingcontainer-1.0.0-5 C:\Users\araba\.gradle\caches\8.10.2\transforms\12779f0977797d9edf48eb7ce470295b\transformed\customview-poolingcontainer-1.0.0\res
+com.devlens.app-annotation-experimental-1.4.1-6 C:\Users\araba\.gradle\caches\8.10.2\transforms\16db619ecf1959e4053db3c9053e6df6\transformed\annotation-experimental-1.4.1\res
+com.devlens.app-activity-1.9.2-7 C:\Users\araba\.gradle\caches\8.10.2\transforms\22729b4b51cac78bf015b8bcdad656c3\transformed\activity-1.9.2\res
+com.devlens.app-lifecycle-viewmodel-savedstate-2.8.6-8 C:\Users\araba\.gradle\caches\8.10.2\transforms\313dd1e895d38aa8c72559095fc4bf5a\transformed\lifecycle-viewmodel-savedstate-2.8.6\res
+com.devlens.app-foundation-layout-release-9 C:\Users\araba\.gradle\caches\8.10.2\transforms\373aa70161abc9e5f46da3f8c0bda14b\transformed\foundation-layout-release\res
+com.devlens.app-runtime-saveable-release-10 C:\Users\araba\.gradle\caches\8.10.2\transforms\393a5e9446e33ac387f7d486ea5e23c1\transformed\runtime-saveable-release\res
+com.devlens.app-sqlite-2.4.0-11 C:\Users\araba\.gradle\caches\8.10.2\transforms\3c634dbd809faba7123edcbf48fa277e\transformed\sqlite-2.4.0\res
+com.devlens.app-material-icons-extended-release-12 C:\Users\araba\.gradle\caches\8.10.2\transforms\3ea07bb42eed56f383432941473d7961\transformed\material-icons-extended-release\res
+com.devlens.app-material3-release-13 C:\Users\araba\.gradle\caches\8.10.2\transforms\46ee3e156bfc0a7d16278977caca9a6a\transformed\material3-release\res
+com.devlens.app-navigation-runtime-ktx-2.8.1-14 C:\Users\araba\.gradle\caches\8.10.2\transforms\4770d0d29c55c7de0650728c2ea12436\transformed\navigation-runtime-ktx-2.8.1\res
+com.devlens.app-material-icons-core-release-15 C:\Users\araba\.gradle\caches\8.10.2\transforms\4d1eeb3006669e28ba837b3a00e5dff1\transformed\material-icons-core-release\res
+com.devlens.app-profileinstaller-1.3.1-16 C:\Users\araba\.gradle\caches\8.10.2\transforms\4f77e7916838a188197d2216d803360c\transformed\profileinstaller-1.3.1\res
+com.devlens.app-ui-tooling-data-release-17 C:\Users\araba\.gradle\caches\8.10.2\transforms\4fd6462867e09910255fb2897a26e057\transformed\ui-tooling-data-release\res
+com.devlens.app-room-runtime-2.6.1-18 C:\Users\araba\.gradle\caches\8.10.2\transforms\533b31bd39aed2f55e5c1aef23a30f79\transformed\room-runtime-2.6.1\res
+com.devlens.app-lifecycle-runtime-release-19 C:\Users\araba\.gradle\caches\8.10.2\transforms\5d06c57f80056f62a9b04bf67d172754\transformed\lifecycle-runtime-release\res
+com.devlens.app-graphics-path-1.0.1-20 C:\Users\araba\.gradle\caches\8.10.2\transforms\64e49c6025f2d6eea06bfa7da2915fb7\transformed\graphics-path-1.0.1\res
+com.devlens.app-savedstate-1.2.1-21 C:\Users\araba\.gradle\caches\8.10.2\transforms\6b57f57a89935e409d3aa616ee8479b8\transformed\savedstate-1.2.1\res
+com.devlens.app-ui-util-release-22 C:\Users\araba\.gradle\caches\8.10.2\transforms\755c7f501c9fd01aba8f5648fa9da083\transformed\ui-util-release\res
+com.devlens.app-startup-runtime-1.1.1-23 C:\Users\araba\.gradle\caches\8.10.2\transforms\761cdd2808715bc3b1372f5549d44fd3\transformed\startup-runtime-1.1.1\res
+com.devlens.app-ui-text-release-24 C:\Users\araba\.gradle\caches\8.10.2\transforms\8418d812ee6cd14a7408310146ad30df\transformed\ui-text-release\res
+com.devlens.app-room-ktx-2.6.1-25 C:\Users\araba\.gradle\caches\8.10.2\transforms\869ea72759617df495e1ae692e41f59c\transformed\room-ktx-2.6.1\res
+com.devlens.app-material-ripple-release-26 C:\Users\araba\.gradle\caches\8.10.2\transforms\8e012efde7721dc1ba5234a8993fa039\transformed\material-ripple-release\res
+com.devlens.app-runtime-release-27 C:\Users\araba\.gradle\caches\8.10.2\transforms\91a0fa11c4d3efb904492bc79b9a61a7\transformed\runtime-release\res
+com.devlens.app-navigation-runtime-2.8.1-28 C:\Users\araba\.gradle\caches\8.10.2\transforms\92addae3bcbf4fb9f7d7398b2e811fcc\transformed\navigation-runtime-2.8.1\res
+com.devlens.app-navigation-common-ktx-2.8.1-29 C:\Users\araba\.gradle\caches\8.10.2\transforms\98498d0ed5bba62732749401daf2c8ae\transformed\navigation-common-ktx-2.8.1\res
+com.devlens.app-core-runtime-2.2.0-30 C:\Users\araba\.gradle\caches\8.10.2\transforms\9e3440fe9fe4f25005b5c51ffa4d65c7\transformed\core-runtime-2.2.0\res
+com.devlens.app-ui-graphics-release-31 C:\Users\araba\.gradle\caches\8.10.2\transforms\9ee09466102c0fbd35b007e5c215ac48\transformed\ui-graphics-release\res
+com.devlens.app-core-ktx-1.13.1-32 C:\Users\araba\.gradle\caches\8.10.2\transforms\a5fe1f036cfa262854461434294f7ad3\transformed\core-ktx-1.13.1\res
+com.devlens.app-foundation-release-33 C:\Users\araba\.gradle\caches\8.10.2\transforms\a9b21e4546c9aaf1fe5c26c8d7c2a1e9\transformed\foundation-release\res
+com.devlens.app-ui-tooling-preview-release-34 C:\Users\araba\.gradle\caches\8.10.2\transforms\b15c3797b800fb815d216f3870cb42d5\transformed\ui-tooling-preview-release\res
+com.devlens.app-lifecycle-livedata-core-2.8.6-35 C:\Users\araba\.gradle\caches\8.10.2\transforms\b338f99b915300a1e850860cb429a790\transformed\lifecycle-livedata-core-2.8.6\res
+com.devlens.app-emoji2-1.3.0-36 C:\Users\araba\.gradle\caches\8.10.2\transforms\b6872d7202ecd65d5ebeac80e150a57a\transformed\emoji2-1.3.0\res
+com.devlens.app-ui-geometry-release-37 C:\Users\araba\.gradle\caches\8.10.2\transforms\b833abee58bb3bd2b8884d5a767f8e10\transformed\ui-geometry-release\res
+com.devlens.app-ui-tooling-release-38 C:\Users\araba\.gradle\caches\8.10.2\transforms\bfe18dbc5729b63537d7f48d3a56abd2\transformed\ui-tooling-release\res
+com.devlens.app-lifecycle-viewmodel-release-39 C:\Users\araba\.gradle\caches\8.10.2\transforms\c32ca4e9709396a5db842e52cb4152c9\transformed\lifecycle-viewmodel-release\res
+com.devlens.app-activity-ktx-1.9.2-40 C:\Users\araba\.gradle\caches\8.10.2\transforms\d1b4f32d040b31deb1e9a4c63abe2a78\transformed\activity-ktx-1.9.2\res
+com.devlens.app-lifecycle-viewmodel-compose-release-41 C:\Users\araba\.gradle\caches\8.10.2\transforms\d821cf8ba386d466c4e3438cac193db3\transformed\lifecycle-viewmodel-compose-release\res
+com.devlens.app-animation-core-release-42 C:\Users\araba\.gradle\caches\8.10.2\transforms\d8bca0c3436a8f64b0011896da816e11\transformed\animation-core-release\res
+com.devlens.app-navigation-common-2.8.1-43 C:\Users\araba\.gradle\caches\8.10.2\transforms\dace8494acf44550a0831c8ae48b44c0\transformed\navigation-common-2.8.1\res
+com.devlens.app-savedstate-ktx-1.2.1-44 C:\Users\araba\.gradle\caches\8.10.2\transforms\db4d521ea57cdb828cc8eef3f1d1da4e\transformed\savedstate-ktx-1.2.1\res
+com.devlens.app-animation-release-45 C:\Users\araba\.gradle\caches\8.10.2\transforms\dbb3b39be5ba30750259e2fea4ba73b7\transformed\animation-release\res
+com.devlens.app-material-release-46 C:\Users\araba\.gradle\caches\8.10.2\transforms\dd6fdc358781b848656c11815ed64cbc\transformed\material-release\res
+com.devlens.app-sqlite-framework-2.4.0-47 C:\Users\araba\.gradle\caches\8.10.2\transforms\e1dd967f3b8d2d57512ce6ba6abd0761\transformed\sqlite-framework-2.4.0\res
+com.devlens.app-navigation-compose-2.8.1-48 C:\Users\araba\.gradle\caches\8.10.2\transforms\e3354fd3b71aafda0a90d6fce0854eee\transformed\navigation-compose-2.8.1\res
+com.devlens.app-ui-test-manifest-1.7.2-49 C:\Users\araba\.gradle\caches\8.10.2\transforms\f0ef314f1ee1bba648af240591c11579\transformed\ui-test-manifest-1.7.2\res
+com.devlens.app-lifecycle-process-2.8.6-50 C:\Users\araba\.gradle\caches\8.10.2\transforms\f2bd4c58268b15fcb93bb2664593d6b6\transformed\lifecycle-process-2.8.6\res
+com.devlens.app-ui-release-51 C:\Users\araba\.gradle\caches\8.10.2\transforms\f936da2d3670d1790045808bf1aca71a\transformed\ui-release\res
+com.devlens.app-lifecycle-runtime-ktx-release-52 C:\Users\araba\.gradle\caches\8.10.2\transforms\fddabf52e357a1bc38630c6a0be49be4\transformed\lifecycle-runtime-ktx-release\res
+com.devlens.app-resValues-53 D:\IQOO Hackathon\DevLens_New_Version\app\build\generated\res\resValues\debug
+com.devlens.app-packageDebugResources-54 D:\IQOO Hackathon\DevLens_New_Version\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.devlens.app-packageDebugResources-55 D:\IQOO Hackathon\DevLens_New_Version\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.devlens.app-debug-56 D:\IQOO Hackathon\DevLens_New_Version\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.devlens.app-debug-57 D:\IQOO Hackathon\DevLens_New_Version\app\src\debug\res
+com.devlens.app-main-58 D:\IQOO Hackathon\DevLens_New_Version\app\src\main\res
